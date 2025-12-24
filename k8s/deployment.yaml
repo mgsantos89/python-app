@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-app
+  labels:
+    app: python-app
+spec:
+  replicas: 3 # Desired number of pods
+  selector:
+    matchLabels:
+      app: python-app # Selects pods with this label
+  template:
+    metadata:
+      labels:
+        app: python-app # Labels for the pods themselves
+    spec:
+      containers:
+      - name: phyton-app
+        image: docker.io/mgsantos89/python-app:v2 # The container image to use
+        ports:
+        - containerPort: 5000 # Port the container listens on
