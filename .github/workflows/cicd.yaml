@@ -9,7 +9,7 @@ on:
 
 jobs:
   ci:
-    outuputs: 
+    outputs: 
       commit_id: ${{ steps.vars.outputs.sha_short }}
     runs-on: ubuntu-latest
     steps:
