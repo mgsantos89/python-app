@@ -44,7 +44,7 @@ jobs:
           echo ${{needs.ci.outputs.commit_id}}
           sudo apt update
           sudo apt install python3 python3-pip -y
-          pip install yq
+          pip install yq --break-system-packages
           yq -Yi '.image.tag = "${{needs.ci.outputs.commit_id}}"' charts/values.yaml
       -
         name: argo-cli install
