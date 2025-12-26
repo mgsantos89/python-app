@@ -30,7 +30,15 @@ jobs:
   
   cd:
     runs-on: self-hosted
+    
     steps:
+      -
+        name: argo-cli install
+        shell: bash
+        run: |
+          curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+          sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd 
+
       -
         name: argocd login
         shell: bash
