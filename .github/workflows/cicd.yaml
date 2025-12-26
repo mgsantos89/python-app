@@ -35,11 +35,15 @@ jobs:
     runs-on: self-hosted
     
     steps:
+
+
       -
         name: Modify values
         shell: bash
         run: |
           echo ${{needs.ci.outputs.commit_id}}
+          pip install yq
+          yq -Yi '.image.tag = "${{needs.ci.outputs.commit_id}}"' charts/values.yaml
       -
         name: argo-cli install
         shell: bash
