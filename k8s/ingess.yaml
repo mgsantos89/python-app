@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  annotations:
+    # Use the NGINX Ingress Controller (adjust based on your actual controller)
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx # Specifies which controller to use (e.g., nginx)
+  rules:
+    - host: "example.your.com"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: example-service # Name of your target Service
+                port:
+                  number: 80 # Port of your target Service
