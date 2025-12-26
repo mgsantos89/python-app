@@ -9,6 +9,8 @@ on:
 
 jobs:
   ci:
+    outuputs: 
+      commit_id: ${{ steps.vars.outputs.sha_short }}
     runs-on: ubuntu-latest
     steps:
       - 
@@ -29,9 +31,15 @@ jobs:
           tags: mgsantos89/python-app:${{ steps.vars.outputs.sha_short }}
   
   cd:
+    needs: ci
     runs-on: self-hosted
     
     steps:
+      -
+        name: Modify values
+        shell: bash
+        run: |
+          echo ${{needs.ci.outputs.commit_id}}
       -
         name: argo-cli install
         shell: bash
