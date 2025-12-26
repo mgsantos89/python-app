@@ -1,4 +1,4 @@
-name: ci
+name: cicd
 
 on:
   push:
@@ -8,8 +8,8 @@ on:
       - main
 
 jobs:
-  docker:
-    runs-on: self-hosted
+  ci:
+    runs-on: ubuntu-latest
     steps:
       - 
         name: Set Short SHA
@@ -27,3 +27,13 @@ jobs:
         with:
           push: true
           tags: mgsantos89/python-app:${{ steps.vars.outputs.sha_short }}
+  
+  cd:
+    runs-on: self-hosted
+    steps:
+      -
+        name: argocd login
+        shell: bash
+        run: |
+          argocd login argocd-server.argocd.svc.cluster.local --insecure --username admin --password HidFlrVuKsbZBfnX
+          echo "login ok"
