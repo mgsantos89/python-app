@@ -43,5 +43,5 @@ jobs:
         name: argocd login
         shell: bash
         run: |
-          argocd login argocd-server.argocd.svc.cluster.local --insecure --username admin --password HidFlrVuKsbZBfnX
+          argocd login ${{ secrets.ARGOCD_SERVER }} --insecure --username ${{ secrets.ARGOCD_USERNAME }} --password ${{ secrets.ARGOCD_PASSWORD }}
           echo "login ok"
