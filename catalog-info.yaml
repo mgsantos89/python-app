@@ -5,6 +5,7 @@ metadata:
   description: Displays the time.
   annotations:
     github.com/project-slug: mgsantos89/python-app
+    backstage.io/techdocs-ref: dir:.
 spec:
   type: service
   owner: development
